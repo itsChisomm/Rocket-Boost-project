@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction rotation;
 
     [SerializeField] AudioClip mainEngine;
-    [SerializeField] ParticleSystem thrustParticles;
+    [SerializeField] ParticleSystem mainBooster;
+    [SerializeField] ParticleSystem leftBooster;
+    [SerializeField] ParticleSystem rightBooster;
 
     [SerializeField] private float thrustForce = 100f;
     [SerializeField] private float rotationForce = 100f;
@@ -45,19 +47,22 @@ public class PlayerController : MonoBehaviour
     {
         if (thrust.IsPressed())
         {
-            rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
-            thrustParticles.Play(); // start particle system
+            rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);           
 
             if (!audioSource.isPlaying)  // so it doesn't layer 
             {
                 audioSource.PlayOneShot(mainEngine);
+            }
+            if (!mainBooster.isPlaying)
+            {
+                mainBooster.Play();
             }
         }
 
         else
         {
             audioSource.Stop();
-            thrustParticles.Stop(); // stop particle system
+            mainBooster.Stop(); // stop particle system
         }
     }
 
@@ -68,12 +73,30 @@ public class PlayerController : MonoBehaviour
         if (rotationInput < 0f) // A (left) is pressed 
         {
             ApplyRotation(rotationForce); // positive rotation around z-axis (z is positive when rotating left)
+
+            if (!rightBooster.isPlaying)
+            {
+                leftBooster.Stop();
+                rightBooster.Play();
+            }
         }
 
         else if (rotationInput > 0f) // D (right) is pressed
 
         {
             ApplyRotation(-rotationForce); // negative rotation around z-axis (z is negative when rotating right)
+
+            if (!leftBooster.isPlaying) 
+            {
+                rightBooster.Stop();    
+                leftBooster.Play();
+            }
+            
+        }
+        else
+        {
+            leftBooster.Stop();
+            rightBooster.Stop();
         }
     }
 

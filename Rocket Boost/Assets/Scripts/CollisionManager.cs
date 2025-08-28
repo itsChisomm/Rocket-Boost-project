@@ -48,6 +48,7 @@ public class CollisionManager : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(finishAudio);
+        finishParticles.Play();
         GetComponent<PlayerController>().enabled = false; // disable player control
         Invoke("LoadNextLevel", levelLoadDelay);
     }
@@ -57,6 +58,7 @@ public class CollisionManager : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(crashAudio);
+        crashParticles.Play();
         GetComponent<PlayerController>().enabled = false; // disable player control 
         Invoke("ReloadLevel", levelLoadDelay);
     }
