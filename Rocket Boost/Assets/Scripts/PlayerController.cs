@@ -48,20 +48,22 @@ public class PlayerController : MonoBehaviour
     {
         float rotationInput = rotation.ReadValue<float>();
 
-        if (rotationInput < 0f)
+        if (rotationInput < 0f) // A (left) is pressed 
         {
-            ApplyRotation(rotationForce);
+            ApplyRotation(rotationForce); // positive rotation around z-axis (z is positive when rotating left)
         }
 
-        else if (rotationInput > 0f)
+        else if (rotationInput > 0f) // D (right) is pressed
 
         {
-            ApplyRotation(-rotationForce);
+            ApplyRotation(-rotationForce); // negative rotation around z-axis (z is negative when rotating right)
         }
     }
 
     private void ApplyRotation(float rotationThisFrame)
-    {
-        rb.AddRelativeTorque(Vector3.forward * rotationThisFrame  * Time.fixedDeltaTime);
+    {  
+        rb.freezeRotation = true; // freezing rotation so we can manually rotate
+        transform.Rotate(Vector3.forward * rotationThisFrame  * Time.fixedDeltaTime);
+        rb.freezeRotation = false; // unfreezing rotation so the physics system can take over
     }
 }
