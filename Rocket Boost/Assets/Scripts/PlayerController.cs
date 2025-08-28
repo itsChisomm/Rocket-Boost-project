@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction rotation;
 
 
-    [SerializeField] private float thrustForce = 10f;
+    [SerializeField] private float thrustForce = 100f;
     [SerializeField] private float rotationForce = 100f;
 
 
@@ -46,14 +46,14 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessRotation()
     {
-        float rotationForce = rotation.ReadValue<float>();
+        float rotationInput = rotation.ReadValue<float>();
 
-        if (rotationForce < 0f)
+        if (rotationInput < 0f)
         {
             ApplyRotation(rotationForce);
         }
 
-        else if (rotationForce > 0f)
+        else if (rotationInput > 0f)
 
         {
             ApplyRotation(-rotationForce);
