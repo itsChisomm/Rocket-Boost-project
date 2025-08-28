@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction thrust;
     [SerializeField] InputAction rotation;
 
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem thrustParticles;
 
     [SerializeField] private float thrustForce = 100f;
     [SerializeField] private float rotationForce = 100f;
+
 
     AudioSource audioSource;
 
@@ -43,16 +46,18 @@ public class PlayerController : MonoBehaviour
         if (thrust.IsPressed())
         {
             rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
+            thrustParticles.Play(); // start particle system
 
             if (!audioSource.isPlaying)  // so it doesn't layer 
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
         }
 
         else
         {
             audioSource.Stop();
+            thrustParticles.Stop(); // stop particle system
         }
     }
 

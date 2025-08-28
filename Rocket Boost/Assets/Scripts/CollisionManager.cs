@@ -6,30 +6,57 @@ public class CollisionManager : MonoBehaviour
 
     [SerializeField] private float levelLoadDelay = 1f;
 
+    [SerializeField] AudioClip crashAudio;
+    [SerializeField] AudioClip finishAudio;
+    [SerializeField] ParticleSystem finishParticles;
+    [SerializeField] ParticleSystem crashParticles;
+
+    AudioSource audioSource;
+
+    bool isControllable = true;
+
     private void OnCollisionEnter(Collision other)
     {
-        switch (other.gameObject.tag)
+        if (!isControllable)
         {
-            case "Friendly":
-                Debug.Log("This thing is friendly");
-                break;
-            case "Finish":
-                StartFinishSequence();                
-                break;
-            default:
-                StartCrashSequence();                
-                break;
+            return;
         }
+        
+
+            switch (other.gameObject.tag)
+            {
+                case "Friendly":
+                    Debug.Log("This thing is friendly");
+                    break;
+                case "Finish":
+                    StartFinishSequence();
+                    break;
+                default:
+                    StartCrashSequence();
+                    break;
+            }
+
+    }
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void StartFinishSequence()
     {
+        isControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(finishAudio);
         GetComponent<PlayerController>().enabled = false; // disable player control
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     private void StartCrashSequence()
     {
+        isControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashAudio);
         GetComponent<PlayerController>().enabled = false; // disable player control 
         Invoke("ReloadLevel", levelLoadDelay);
     }
@@ -51,6 +78,6 @@ public class CollisionManager : MonoBehaviour
     void ReloadLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        SceneManager.LoadScene(currentSceneIndex); // reload the current level
     }
 }
