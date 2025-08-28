@@ -588,6 +588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Landing Pad '
       objectReference: {fileID: 0}
+    - target: {fileID: 267308236108250920, guid: fd7e30b2b03744944ad8627b601d2faa, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     - target: {fileID: 648091461764834706, guid: fd7e30b2b03744944ad8627b601d2faa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.35
@@ -780,6 +784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launch Pad
       objectReference: {fileID: 0}
+    - target: {fileID: 6083508211475487792, guid: 4321e7382e534aa4e80b7a8125cbe23c, type: 3}
+      propertyPath: m_TagString
+      value: Friendly
+      objectReference: {fileID: 0}
     - target: {fileID: 6856491632885974666, guid: 4321e7382e534aa4e80b7a8125cbe23c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.35
@@ -881,6 +889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 8471335235442654888, guid: 292e1aeea05abfe4e9a6eb132ac107d5, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -888,6 +900,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8471335235442654888, guid: 292e1aeea05abfe4e9a6eb132ac107d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8334608472134966926}
+    - targetCorrespondingSourceObject: {fileID: 8471335235442654888, guid: 292e1aeea05abfe4e9a6eb132ac107d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8334608472134966927}
   m_SourcePrefab: {fileID: 100100000, guid: 292e1aeea05abfe4e9a6eb132ac107d5, type: 3}
 --- !u!4 &5107264674082270611 stripped
 Transform:
@@ -972,7 +987,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6585522a51731db43acad1b557fc126f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1056,6 +1071,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8334608472134966927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334608472134966925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2a9c8c7fe72684eb43836a3c532879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
