@@ -47,22 +47,27 @@ public class PlayerController : MonoBehaviour
     {
         if (thrust.IsPressed())
         {
-            rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);           
-
-            if (!audioSource.isPlaying)  // so it doesn't layer 
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-            if (!mainBooster.isPlaying)
-            {
-                mainBooster.Play();
-            }
+            StartThrusting();
         }
 
         else
         {
             audioSource.Stop();
             mainBooster.Stop(); // stop particle system
+        }
+    }
+
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
+
+        if (!audioSource.isPlaying)  // so it doesn't layer 
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        if (!mainBooster.isPlaying)
+        {
+            mainBooster.Play();
         }
     }
 
