@@ -17,7 +17,7 @@ public class CollisionManager : MonoBehaviour
     bool isControllable = true;
     bool isCollidable = true; 
 
-    void Update()
+   /* void Update()
     {
         RespondToDebugKeys();
     }
@@ -32,7 +32,7 @@ public class CollisionManager : MonoBehaviour
         {
             isCollidable = !isCollidable;
         }
-    }
+    } */
 
     private void OnCollisionEnter(Collision other)
     {
